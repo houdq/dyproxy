@@ -6,6 +6,9 @@ import java.lang.reflect.Proxy
 
 /**
  * Created by HouDongQiang on 2016/3/10.
+ *
+ *
+ * 这是一个coding代理
  */
 class CodeProxy implements InvocationHandler {
     Object obj
@@ -20,14 +23,21 @@ class CodeProxy implements InvocationHandler {
     Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object result
         try {
+            //码字前先来杯咖啡
             doBefore()
+
             result = method.invoke(obj, args)
+
+            //提交完代码滚回家
             doAfter()
+
         } catch (Exception ex) {
+
             System.exit(1)
         }
         return result
     }
+
 
     private void doAfter() {
         println('I wannago home...')
